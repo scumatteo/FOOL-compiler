@@ -1,0 +1,57 @@
+/* expected return: 15 */
+let
+	class List (f:int, r:List) {
+		fun first:int() f;
+		fun rest:List() r;
+	}
+	class XList (f:int) {
+		fun first:int() f;
+	}
+
+	fun f:int (i:int, j:int) i+j;
+  	fun r:int (i:int, j:int) f(i,j) + 7;
+
+  	var list:List = new List(5,
+  						new List(3,null) );
+  	var tail:List = list.rest( );
+in
+	print ( r( list.first( ), tail.first( ) ) );
+
+/* expected return: -1 */ /*
+let
+	class List (f:int, r:List) {
+		fun first:int() f;
+		fun rest:List() r;
+	}
+	class XList (f:int) {
+		fun first:int() f;
+	}
+
+	fun f:int (i:int, j:int) i+j;
+  	fun r:int (i:int, j:int) f(i,j) + 7;
+
+  	var list:List = new List(5,null);
+in
+	print ( list.rest( ) );
+*/
+/* expected return: 5 */ /*
+let
+	class List (f:int, r:List) {
+		fun first:int() f;
+		fun rest:List() r;
+	}
+	class XList (f:int) {
+		fun generateAndGetFirst:int()
+			let
+				var list:List = new List(5, null);
+			in
+				list.first( );
+	}
+
+	fun f:int (i:int, j:int) i+j;
+  	fun r:int (i:int, j:int) f(i,j) + 7;
+
+  	var xlist:XList = new XList(7);
+in
+	print ( xlist.generateAndGetFirst( ) );
+*/
